@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for review in reviews %}
 
-test
+<h1>{{review.title}}</h1>
+
+{% endfor %}
 
 {% endblock %}
