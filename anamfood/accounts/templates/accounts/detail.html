@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user == user %}
+<h3>MyPage</h3>
+{% else %}
+<h3>{{user.username}}님의 정보</h3>
+{% endif %}
+<hr></hr>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">사용자명 : {{user.username}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">고유번호 : {{user.pk}}</h6>
+    <p class="card-text">가입일 : {{user.password}}</p>
+    <a href="{% url 'accounts:update' %}" class="btn btn-primary d-inline-block">수정</a>
+    {% if request.user == user %}
+    <form action='{% url 'accounts:delete' %}' method='POST' class='d-inline-block'>
+      {% csrf_token %}
+      <button class='btn btn-danger d-inline-block'>삭제</button>
+    </form>
+    {% endif %}
+    <a href="" class="btn btn-secondary d-inline-block">뒤로가기</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404, redirect
 from .models import Community
 from .forms import CommunityForm
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -25,6 +26,7 @@ def delete(request, pk):
     community.delete()
     return redirect('community:index')
 
+@login_required
 def create(request):
     if request.method=='POST':
         form=CommunityForm(request.POST)
@@ -38,7 +40,7 @@ def create(request):
     }
     return render(request,'community/form.html',context)
 
-
+@login_required
 def update(request,pk):
     community=get_object_or_404(Community,pk=pk)
     if request.method=='POST':

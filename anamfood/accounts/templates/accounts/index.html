@@ -14,7 +14,7 @@
     <tr>
       <th scope="row">{{user.pk}}</th>
       <td>{{user.username}}</td>
-        <td><a href="" class="btn btn-secondary">보기</a></td>
+        <td><a href="{% url 'accounts:detail' user.pk %}" class="btn btn-secondary">보기</a></td>
     </tr>
     {% endfor %}
   </tbody>

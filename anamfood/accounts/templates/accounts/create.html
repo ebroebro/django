@@ -2,16 +2,27 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
-<h1>회원가입</h1></h1>
-
+{% if request.resolver_match.url_name == 'create' %}
+<h1>회원가입</h1>
+{% else %}
+<h1>정보수정</h1>
+{% endif %}
 
 <form action='' method='POST'>
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button class='btn btn-primary'>
+
+{% if request.resolver_match.url_name == 'create' %}
+<button class='btn btn-primary'>
         제출
     </button>
+{% else %}
+<button class='btn btn-primary'>
+        완료
+    </button>
+{% endif %}
+
+
 
 
 </form>
