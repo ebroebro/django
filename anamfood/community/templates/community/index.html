@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Community</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">게시글 제목</th>
+      <th scope="col">가게이름</th>
+      <th scope="col">평점</th>
+      <th scope="col">비고</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for community in communities %}
+    <tr>
+      <th scope="row">{{community.pk}}</th>
+      <td>{{community.title}}</td>
+      <td>{{community.store_name}}</td>
+      <td>{{community.rank}}</td>
+      <td><a href="{% url 'community:detail' community.pk %}" class="btn btn-primary">글 보기</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

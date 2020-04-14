@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card my-3">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">글 제목 : {{community.title}}</h5>
+    <h6 class="card-title">가게 이름 : {{community.store_name}}</h6>
+    <p class="card-text">평점 : {{community.rank}}</p>
+    <p class="card-text">내용 : {{community.content}}</p>
+    <p class="card-text"><small class="text-muted">작성 시간 : {{community.created_at}}</small></p>
+    <p class="card-text"><small class="text-muted">작성 시간 : {{community.updated_at}}</small></p>
+    <form action="{% url 'community:delete' community.pk %}" method='POST' class='d-inline-block'>
+        {% csrf_token %}
+        <button class="btn btn-danger">삭제</button>
+    </form>
+    <form action="{% url 'community:update' community.pk %}" method='GET' class='d-inline-block'>
+        <button class='btn btn-primary'>수정</button>
+    </form>
+  <a href="{% url 'community:index' %}" class="btn btn-secondary">뒤로가기</a>
+  </div>
+
+
+</div>
+{% endblock %}
