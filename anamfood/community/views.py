@@ -55,3 +55,17 @@ def update(request,pk):
         'pk':pk
     }
     return render(request,'community/form.html',context)
+
+def map(request,pk):
+    community=get_object_or_404(Community,pk=pk)
+    context={
+        'community':community
+    }
+    return render(request,'community/map.html',context)
+
+def map2(request,pk):
+    community=get_object_or_404(Community,pk=pk)
+    context={
+        'community':community
+    }
+    return render(request,'community/map2.html',context)
