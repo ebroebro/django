@@ -16,7 +16,8 @@
     <p class="card-text">내용 : {{community.content}}</p>
     <p class="card-text"><small class="text-muted">작성 시간 : {{community.created_at}}</small></p>
     <p class="card-text"><small class="text-muted">작성 시간 : {{community.updated_at}}</small></p>
-    <a href="https://www.google.com/maps/place/안암+{{community.store_name}}" class="btn btn-dark" target="blank">지도보기</a>
+    <a href="https://www.google.com/maps/place/안암+{{community.store_name}}" class="btn btn-dark" target="blank">google에서 지도보기</a>
+    <a href="{% url 'community:map2' community.pk %}" class="btn btn-dark" target="blank">kakaomap 지도보기</a>
     <hr>
     <form action="{% url 'community:delete' community.pk %}" method='POST' class='d-inline-block'>
         {% csrf_token %}
