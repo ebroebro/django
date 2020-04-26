@@ -12,5 +12,9 @@ urlpatterns = [
     path('<int:pk>/update/',views.update, name='update'),
     path('create/',views.create,name='create'),
     path('<int:pk>/map/',views.map, name='map'),
-    path('<int:pk>/map2/',views.map2,name='map2')
+    path('<int:pk>/map2/',views.map2,name='map2'),
+    path('<int:community_pk>/comment/', views.create_comment, name='create_comment'),
+    path('<int:community_pk>/comment/<int:comment_pk>/delete/', views.delete_comment, name='delete_comment')
 ]
+
+#

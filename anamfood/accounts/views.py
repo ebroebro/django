@@ -21,8 +21,9 @@ def create(request):
     if request.method=='POST':
         form=UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('accounts:index')
+            user=form.save()
+            auth_login(request,user)
+            return redirect('community:index')
     else:
         form=UserCreationForm()
     context={

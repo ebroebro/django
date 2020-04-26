@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 
 
 {% block content %}
+
+<!--#community session#-->
 
 <div class="card my-3">
   <img src="https://maps.googleapis.com/maps/api/staticmap?center=안암+{{community.store_name}}&zoom=15&size=600x300&maptype=roadmap
@@ -26,9 +28,39 @@
     <form action="{% url 'community:update' community.pk %}" method='GET' class='d-inline-block'>
         <button class='btn btn-primary'>수정</button>
     </form>
-  <a href="{% url 'community:index' %}" class="btn btn-secondary">뒤로가기</a>
-  </div>
+    <a href="{% url 'community:index' %}" class="btn btn-secondary">뒤로가기</a>
 
+
+  <!--#comment_create session#-->
+    <hr>
+    <div>
+      <form action="{% url 'community:create_comment' community.pk %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button class='btn btn-secondary'>작성</button>
+      </form>
+
+    </div>
+    <hr>
+  <!--#comment session#-->
+    <div>
+      {% for comment in community.comment_set.all %}
+      <p class='font-weight-bold'>작성자 : {{comment.user.username}}</p>
+      <p>{{comment.content}}</p>
+      <p>{{comment.created_at}}</p>
+        {% if comment.user == request.user %}
+        <form action="{% url 'community:delete_comment' community.pk comment.pk %}" method = 'POST'>
+          {% csrf_token %}
+          <button class='btn btn-danger'>삭제</button>
+        </form>
+        {% endif %}
+      {% empty %}
+      <p>댓글을 달아주세요~</p>
+      <hr>
+      {% endfor %}
+    </div>
+
+  </div>
 
 </div>
 {% endblock %}
