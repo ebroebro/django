@@ -14,7 +14,7 @@ def index(request):
 
 
 def detail(request,pk):
-    community=Community.objects.get(pk=pk)
+    community=get_object_or_404(Community, pk=pk)
     form=CommentForm()
     context={
         'community':community,
